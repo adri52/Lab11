@@ -12,13 +12,16 @@ using std::queue;
 using std::ifstream;
 
 
+
 int main()
 {
-	int qSize;
+	//We open the file 
 	ifstream fin;
 	fin.open("Lab11main.cpp", std::ios::in);
 	queue<string> q;
 	
+
+	// as long as there are values in the files we will read them and then assign them to a wueue 
 	while (fin)
 	{
 		string temp;
@@ -26,30 +29,20 @@ int main()
 		q.push(temp);
 	}
 
+
+	// we sorth the que 
 	mergeSort(q);
-	qSize = q.size();
 
-	while(qSize !=0)
+	//wedisplay the queue 
+	while (!q.empty())
 	{
-		cout << q.front();
+		cout << q.front() << endl;
 		q.pop();
-		
 	}
-	
-
-
-	
-
-
-
-
-
-
-
-
 
 
 }
 
 
 
+ 

@@ -9,9 +9,10 @@
 
 using std::queue;
 using std::string;
-//using namespace std; 
 
 
+//We test the Merge sort function and that proves that the 
+//split and merge fucntions work correctly 
 TEST_CASE("Merge Sort function")
 {
 	SECTION("Integers")
@@ -71,24 +72,3 @@ TEST_CASE("Merge Sort function")
 
 
 
-
-TEST_CASE("Merge function")
-{
-	queue<int> a, b, q;
-	q.push(7);
-	q.push(5);
-	q.push(23);
-	q.push(1);
-
-	merge(a, b, q);
-	REQUIRE(a == queue<int>({ 2, 45}));
-	REQUIRE(b == queue<int>({ 1, 67 }));
-
-
-	
-
-
-
-
-
-}
