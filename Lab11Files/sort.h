@@ -6,6 +6,7 @@
 using std::queue; 
 using std::cout;
 
+//using namespace std; 
 
 
 template<class T>
@@ -35,35 +36,36 @@ template<class T>
 void merge(queue<T>& a, queue<T>& b, queue<T> & q)
 {
 	
-	while (!a.empty() && b.empty())
-	{
-		q.push(a.front());
-		a.pop();
-	}
 
-
-	while (a.empty() && !b.empty())
+	while (!a.empty() || !b.empty())
 	{
-		q.push(b.front());
-		b.pop();
-	}
+		if (!a.empty() && b.empty())
+		{
+			q.push(a.front());
+			a.pop();
+		}
+
+		else if (!b.empty() && a.empty())
+		{
+			q.push(b.front());
+			b.pop();
+		}
+
+		else if (!a.empty() && !b.empty())
+		{
+			if (a.front() < b.front())
+			{
+				q.push(a.front());
+				a.pop();
 	
-
-	while (!a.empty() && !b.empty())
-	{
-		if (a.front() < b.front())
-		{
-			q.push(a.front());
-			q.push(b.front());
+			}
+			else
+			{
+				q.push(b.front());
+				b.pop();
+			}
 		}
-		else
-		{
-			q.push(b.front());
-			q.push(a.front());
-		}
-
-		a.pop();
-		b.pop();
+	
 	}
 
 }
@@ -80,24 +82,33 @@ void mergeSort(queue<T> & q)
 	{
 		return;
 	}
-	queue<T> a, b;
-	split(q, a, b);
-	mergeSort(a);
-	mergeSort(b);
-	merge(a, b, q);
-	
+	else {
+		queue<T> a, b;
+		split(q, a, b);
+		mergeSort(a);
+		mergeSort(b);
+		merge(a, b, q);
+	}
 
 }
 
 
 
-
-
-
-
-
-
-
+template<class T>
+std::ostream& operator<<(std::ostream& out, const queue<T>& q)
+{
+	queue<T> cpy = q; 
+	out << "[";
+	while (!cpy.empty())
+	{
+		out << cpy.front();
+		cpy.pop();
+		if (!cpy.empty())
+			out << ", ";
+	}
+	out << "]";
+	return out;
+}
 
 
 
